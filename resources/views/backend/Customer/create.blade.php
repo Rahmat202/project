@@ -1,0 +1,165 @@
+@extends('backend.layouts.app')
+@section('content')
+		<!-- site preloader start -->
+		<div class="page-loader">
+			<div class="loader-in"></div>
+		</div>
+		<!-- site preloader end -->
+
+
+			<!-- login box start -->
+			<div class="login-box">
+				<a class="close-login" href="#"><i class="fa fa-times"></i></a>
+				<form>
+					<div class="container">
+						<p>Hello our valued visitor, We present you the best web solutions and high quality graphic designs with a lot of features. just login to your account and enjoy ...</p>
+						<div class="login-controls">
+							<div class="skew-25 input-box left">
+								<input type="text" class="txt-box skew25" placeholder="User name Or Email" />
+							</div>
+							<div class="skew-25 input-box left">
+								<input type="password" class="txt-box skew25" placeholder="Password" />
+							</div>
+							<div class="left skew-25 main-bg">
+								<input type="submit" class="btn skew25" value="Login" />
+							</div>
+							<div class="check-box-box">
+								<input type="checkbox" class="check-box" /><label>Remember me !</label>
+								<a href="#">Forgot your password ?</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- login box End -->
+
+			<!-- Header Start -->
+			<div id="headWrapper" class="clearfix">
+
+				<!-- top bar start -->
+				@include('backend.layouts.topbar')
+				<!-- top bar end -->
+                @include('backend.layouts.top_header')
+			</div>
+			<!-- Header End -->
+
+			<!-- Content Start -->
+			
+				
+                <div id="contentWrapper">
+                   
+                    <div class="padd-top-50">
+                        <div class="container">
+                            <div class="row">
+                                <div class="cell-7 contact-form fx" data-animate="fadeInLeft" id="contact">
+                                    <h3 class="block-head">Add Customer</h3>
+                                    <mark id="message"></mark>
+                                    <form class="form-signin cform" 
+                                    method="POST" action="{{ route('store.customer') }}" id="cform" autocomplete="on"
+                                    enctype="multipart/form-data"
+                                    >
+                                        @csrf
+                                        <div class="form-input">
+                                            <label>City<span class="red">*</span></label>
+                                            <input type="text" required="required" name="city" id="name">
+                                        </div>
+                                      
+                                    <div class="form-input">
+                                            <label class="form-label">Category</label>
+                                        <select name="category_id" id="" class="form-control">
+                                            <option value="">Please Select</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                        </div> 
+                                        <div class="form-input"> 
+                                            <label class="form-label">Country</label>
+                                        <select name="country_id" id="" class="form-control">
+                                            <option value="">Please Select</option>
+                                            @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                        <div class="form-input">
+                                            <label>Personal Name<span class="red">*</span></label>
+                                            <input type="text" required="required" name="P_name" id="name">
+                                        </div>
+                                        <div class="form-input">
+                                            <label>Personal Address<span class="red">*</span></label>
+                                            <input type="text" required="required" name="P_address" id="name">
+                                        </div>
+                                        <div class="form-input">
+                                            <label>Email<span class="red">*</span></label>
+                                            <input type="email" id="webUrl" name="webUrl" required="required">
+                                        </div>
+                                        <div class="form-input">
+                                            <label>webUrl<span class="red">*</span></label>
+                                            <input type="text" id="webUrl" name="image" required="required">
+                                        </div>
+                                        <div class="form-input">
+                                            <label>img_resolution<span class="red">*</span></label>
+                                            <input type="text" id="webUrl" name="img_resolution" required="required">
+                                        </div>
+                                        
+                                        <div class="form-input">
+                                            <label>keyword</label>
+                                            <input name="keyword" type="text" id="keyword"  required="required">			    						
+                                        </div>
+                                        <div class="form-input">
+                                            <label>Remark<span class="red">*</span></label>
+                                            <textarea required="required" name="remark" cols="40" rows="7" id="messageTxt" spellcheck="true"></textarea>
+                                        </div>
+                                        <div class="form-input">
+                                            <label>imgstatus</label>
+                                            <input name="imgstatus" type="text" id="keyword"  required="required">			    						
+                                        </div>
+                                        <div class="form-input"> 
+                                            <label class="form-label">User</label>
+                                        <select name="user_id" id="" class="form-control">
+                                            <option value="">Please Select</option>
+                                            @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->fname }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                        <div class="form-input">
+                                            <label>addedBy</label>
+                                            <input name="addedBy" type="text" id="keyword"  required="required">			    						
+                                        </div>
+                                        <div class="form-input">
+                                            <label>addedOn</label>
+                                            <input name="addedOn" type="text" id="addedOn"  required="required">			    						
+                                        </div>
+                                        <div class="form-input">
+                                            <label>updatedBy</label>
+                                            <input name="updatedBy" type="text" id="updatedBy"  required="required">			    						
+                                        </div>
+                                        <div class="form-input">
+                                            <label>updatedOn</label>
+                                            <input name="updatedOn" type="text" id="updatedOn"  required="required">			    						
+                                        </div>
+                                        <div class="form-input">
+                                            <label class="form-label">Upload Image</label>
+                                            <input type="file" name="image" class="form-control" required  />		    						
+                                        </div>
+                                        
+                                        <div class="form-input">
+                                            <input type="submit" class="btn btn-large main-bg" value="Submit">&nbsp;&nbsp;<input type="reset" class="btn btn-large" value="Reset" id="reset">
+                                        </div>
+                                    </form>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+				
+
+			</div>
+@endsection
